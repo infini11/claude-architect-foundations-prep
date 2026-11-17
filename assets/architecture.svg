@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/>
+    </marker>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#283442"/>
+    </marker>
+    <style>
+      .box { fill: #a9b4c0; }
+      .model { fill: #c9d1da; }
+      .t { fill: #2b3440; font-size: 17px; text-anchor: middle; }
+      .s { fill: #2b3440; font-size: 14px; text-anchor: middle; }
+      .note { fill: #283442; }
+      .nt { fill: #ffffff; font-size: 14px; text-anchor: middle; }
+      .lbl { fill: #2b3440; font-size: 14px; text-anchor: middle; }
+      .url { fill: #3d9bff; text-decoration: underline; }
+      .muted { fill: #6b7785; font-size: 13px; text-anchor: middle; font-style: italic; }
+      .edge { stroke: #9aa7b5; stroke-width: 2.5; fill: none; }
+      .ptr { stroke: #283442; stroke-width: 2.5; fill: none; }
+      .frame { fill: none; stroke: #9aa7b5; stroke-width: 1.5; stroke-dasharray: 7 5; }
+      .ft { fill: #4a5563; font-size: 14px; font-weight: 600; }
+      .fs { fill: #6b7785; font-size: 13px; }
+    </style>
+  </defs>
+
+  <!-- fond -->
+  <rect x="8" y="8" width="1184" height="844" rx="6" fill="#eef1f5" stroke="#d5dbe2"/>
+
+  <!-- ton code -->
+  <rect class="box" x="425" y="36" width="350" height="64" rx="3"/>
+  <text class="t" x="600" y="74">Your code (curl, Python + anthropic SDK)</text>
+  <rect class="note" x="800" y="30" width="330" height="76" rx="3"/>
+  <text class="nt" x="965" y="62">Speaks the “Anthropic language”</text>
+  <text class="nt" x="965" y="86">(Messages API)</text>
+  <path class="ptr" d="M800,68 L781,68" marker-end="url(#d)"/>
+
+  <!-- aiguillage -->
+  <path class="edge" d="M600,100 L600,130 M250,130 L790,130"/>
+  <rect x="470" y="140" width="260" height="26" rx="13" fill="#ffffff" stroke="#d5dbe2"/>
+  <text class="s" x="600" y="158">selected via .env.ollama / .env.anthropic</text>
+
+  <!-- ================= BACKEND 1 : LOCAL ================= -->
+  <path class="edge" d="M250,130 L250,192"/>
+  <text class="lbl" x="250" y="212">POST <tspan class="url">http://localhost:4000/v1/messages</tspan></text>
+  <text class="lbl" x="250" y="234">{"model": "llama3.2-3b", "messages": [...]}</text>
+  <path class="edge" d="M250,246 L250,302" marker-end="url(#a)"/>
+
+  <rect class="frame" x="36" y="270" width="580" height="530" rx="8"/>
+  <text class="ft" x="52" y="764">① Docker Compose, on your machine</text>
+  <text class="fs" x="52" y="784">free · offline · .env.ollama</text>
+
+  <rect class="box" x="130" y="318" width="240" height="70" rx="3"/>
+  <text class="t" x="250" y="347">LiteLLM</text>
+  <text class="s" x="250" y="370">(container → port 4000)</text>
+  <rect class="note" x="400" y="321" width="200" height="64" rx="3"/>
+  <text class="nt" x="500" y="347">Translator</text>
+  <text class="nt" x="500" y="370">Messages API → Ollama API</text>
+  <path class="ptr" d="M400,353 L376,353" marker-end="url(#d)"/>
+
+  <path class="edge" d="M250,388 L250,420"/>
+  <text class="lbl" x="250" y="440">POST <tspan class="url">http://ollama:11434/api/chat</tspan></text>
+  <text class="lbl" x="250" y="462">{"model": "llama3.2:3b", "messages": [...]}</text>
+  <path class="edge" d="M250,474 L250,520" marker-end="url(#a)"/>
+
+  <rect class="box" x="130" y="528" width="240" height="70" rx="3"/>
+  <text class="t" x="250" y="557">Ollama</text>
+  <text class="s" x="250" y="580">(container → port 11434)</text>
+  <rect class="note" x="400" y="531" width="200" height="64" rx="3"/>
+  <text class="nt" x="500" y="557">Engine</text>
+  <text class="nt" x="500" y="580">runs the model</text>
+  <path class="ptr" d="M400,563 L376,563" marker-end="url(#d)"/>
+
+  <path class="edge" d="M250,598 L250,642" marker-end="url(#a)"/>
+  <rect class="model" x="100" y="650" width="300" height="70" rx="3"/>
+  <text class="t" x="250" y="679">llama3.2:3b</text>
+  <text class="s" x="250" y="702">(model file, Docker volume)</text>
+
+  <!-- ================= BACKEND 2 : ANTHROPIC ================= -->
+  <path class="edge" d="M790,130 L790,192"/>
+  <text class="lbl" x="790" y="212">POST <tspan class="url">https://api.anthropic.com/v1/messages</tspan></text>
+  <text class="lbl" x="790" y="234">{"model": "claude-opus-5-5", ...} + header anthropic-version</text>
+  <path class="edge" d="M790,246 L790,302" marker-end="url(#a)"/>
+
+  <rect class="frame" x="636" y="270" width="528" height="530" rx="8"/>
+  <text class="ft" x="652" y="764">② Anthropic cloud</text>
+  <text class="fs" x="652" y="784">paid (per token) · your API key · .env.anthropic</text>
+
+  <rect class="box" x="670" y="318" width="240" height="70" rx="3"/>
+  <text class="t" x="790" y="347">Anthropic API</text>
+  <text class="s" x="790" y="370">(api.anthropic.com)</text>
+  <rect class="note" x="940" y="321" width="200" height="64" rx="3"/>
+  <text class="nt" x="1040" y="347">No translation</text>
+  <text class="nt" x="1040" y="370">speaks the API natively</text>
+  <path class="ptr" d="M940,353 L916,353" marker-end="url(#d)"/>
+
+  <path class="edge" d="M790,388 L790,520" marker-end="url(#a)"/>
+
+  <rect class="model" x="670" y="528" width="240" height="70" rx="3"/>
+  <text class="t" x="790" y="557">Claude</text>
+  <text class="s" x="790" y="580">Opus 5.5 · Sonnet 5.5 · Haiku 5.5</text>
+  <rect class="note" x="940" y="531" width="200" height="64" rx="3"/>
+  <text class="nt" x="1040" y="557">Real Claude model</text>
+  <text class="nt" x="1040" y="580">thinking, reliable tool use</text>
+  <path class="ptr" d="M940,563 L916,563" marker-end="url(#d)"/>
+
+  <!-- légende -->
+  <text class="muted" x="600" y="834">Same code, same SDK: only ANTHROPIC_BASE_URL, ANTHROPIC_API_KEY and MODEL change.</text>
+</svg>
