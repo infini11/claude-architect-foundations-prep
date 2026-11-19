@@ -1,7 +1,5 @@
-import os
 
-import anthropic
-from dotenv import load_dotenv
+from backend import make_client
 
 
 def chat_stream(client, history, user_input, model, max_tokens=1000):
@@ -27,8 +25,7 @@ def chat_stream(client, history, user_input, model, max_tokens=1000):
 
 
 if __name__ == "__main__":
-    load_dotenv(".env.anthropic")
-    client = anthropic.Anthropic()
+    client, model = make_client()
     history = []
 
     while True:
@@ -36,6 +33,6 @@ if __name__ == "__main__":
         if user_input.strip().lower() in ("exit", "quit"):
             break
         print("\nClaude: ", end="", flush=True)
-        response = chat_stream(client, history, user_input, model=os.environ["MODEL"])
+        response = chat_stream(client, history, user_input, model=model)
         print(f"\n[{len(history)} messages in history | {response.usage.input_tokens} input tokens"
               f" | stop_reason={response.stop_reason}]")

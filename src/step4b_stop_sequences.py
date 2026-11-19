@@ -1,10 +1,7 @@
 """Old-school JSON extraction: XML tags in the prompt + stop_sequences. Nothing is guaranteed."""
 import json
-import os
 
-import anthropic
-from dotenv import load_dotenv
-
+from backend import make_client
 from step4_structured import EMAIL
 
 
@@ -44,8 +41,7 @@ def extract_contact(client, text, model, max_tokens=1000):
 
 
 if __name__ == "__main__":
-    load_dotenv(".env.anthropic")
-    client = anthropic.Anthropic()
+    client, model = make_client()
 
-    contact = extract_contact(client, EMAIL, model=os.environ["MODEL"])
+    contact = extract_contact(client, EMAIL, model=model)
     print(json.dumps(contact, indent=2))

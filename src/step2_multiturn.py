@@ -1,7 +1,5 @@
-import os
 
-import anthropic
-from dotenv import load_dotenv
+from backend import make_client
 
 
 def chat(client, history, user_input, model, max_tokens=1000):
@@ -25,14 +23,13 @@ def reply_text(response):
 
 
 if __name__ == "__main__":
-    load_dotenv(".env.anthropic")
-    client = anthropic.Anthropic()
+    client, model = make_client()
     history = []  # the conversation memory lives HERE, in mu side
 
     while True:
         user_input = input("\nYou: ")
         if user_input.strip().lower() in ("exit", "quit"):
             break
-        response = chat(client, history, user_input, model=os.environ["MODEL"])
+        response = chat(client, history, user_input, model=model)
         print(f"\nClaude: {reply_text(response)}")
         print(f"[{len(history)} messages in history | {response.usage.input_tokens} input tokens]")

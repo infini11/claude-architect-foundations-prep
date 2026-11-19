@@ -1,8 +1,6 @@
 import json
-import os
 
-import anthropic
-from dotenv import load_dotenv
+from backend import make_client
 
 # The JSON schema the answer MUST follow (standard JSON Schema syntax).
 CONTACT_SCHEMA = {
@@ -48,9 +46,8 @@ def extract_contact(client, text, model, max_tokens=1000):
 
 
 if __name__ == "__main__":
-    load_dotenv(".env.anthropic")
-    client = anthropic.Anthropic()
+    client, model = make_client()
 
-    contact = extract_contact(client, EMAIL, model=os.environ["MODEL"])
+    contact = extract_contact(client, EMAIL, model=model)
     print(json.dumps(contact, indent=2))
     print(f"\nUrgent? {contact['urgent']} | intent = {contact['intent']}")
