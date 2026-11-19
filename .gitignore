@@ -8,3 +8,6 @@ __pycache__/
 !.env*.example
 dist/
 *.egg-info/
+
+
+.env.anthropic
