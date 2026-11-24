@@ -1,0 +1,47 @@
+[
+  {
+    "id": "complaint_deadline",
+    "tags": [
+      "complaint",
+      "easy"
+    ],
+    "email": "Hi, this is Eva Rossi from Nordwind GmbH (eva.rossi@nordwind.de).\nOur order #1042 arrived damaged for the second time this month.\nWe need a replacement before Friday or we will cancel the contract.",
+    "expected": {
+      "name": "Eva Rossi",
+      "email": "eva.rossi@nordwind.de",
+      "company": "Nordwind GmbH",
+      "intent": "complaint",
+      "urgent": true
+    }
+  },
+  {
+    "id": "request_proposals",
+    "tags": [
+      "purchase",
+      "hard"
+    ],
+    "email": "Hello, I am Sakhite MBOUP from Seets (sndm@seets.com). I am reaching out to respond to the request for proposal for your project.",
+    "expected": {
+      "name": "Sakhite MBOUP",
+      "email": "sndm@seets.com",
+      "company": "Seets",
+      "intent": "purchase",
+      "urgent": false
+    }
+  },
+  {
+    "id": "tender_portal_support",
+    "tags": [
+      "support",
+      "easy"
+    ],
+    "email": "Hi, my name is Sarah Jenkins from Apex Logistics (s.jenkins@apexlogistics.com).\nWe are preparing a bid for your supply chain optimization tender, but we are getting an error when trying to download the technical specifications.\nCould someone from your team help us access the files?",
+    "expected": {
+      "name": "Sarah Jenkins",
+      "email": "s.jenkins@apexlogistics.com",
+      "company": "Apex Logistics",
+      "intent": "support",
+      "urgent": false
+    }
+  }
+]
