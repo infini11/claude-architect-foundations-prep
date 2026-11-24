@@ -6,9 +6,9 @@ from backend import make_client
 CONTACT_SCHEMA = {
     "type": "object",
     "properties": {
-        "name": {"type": "string"},
-        "email": {"type": "string"},
-        "company": {"type": "string"},
+        "name": {"type": ["string", "null"]},     # null = not stated in the email
+        "email": {"type": ["string", "null"]},
+        "company": {"type": ["string", "null"]},
         "intent": {"type": "string", "enum": ["purchase", "support", "complaint", "other"]},
         "urgent": {"type": "boolean"},
     },

@@ -9,9 +9,9 @@ from step4_structured import EMAIL
 
 class Contact(BaseModel):
     """Replaces CONTACT_SCHEMA: the SDK turns this class into a JSON schema."""
-    name: str
-    email: str
-    company: str
+    name: str | None  # None = not stated in the email (instead of an invented value)
+    email: str | None
+    company: str | None
     intent: Literal["purchase", "support", "complaint", "other"]  # becomes an "enum"
     urgent: bool
 
